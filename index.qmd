@@ -1,42 +1,40 @@
 ---
-title: "YOUR NAME"
+title: "Carolyn Mack"
 about:
-  template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  template: jolla  # jolla  trestles  solana  marquee  broadside
+  image: img/roster.webp
   image-width: 16em
-  image-shape: rounded # rectangle  round  rounded
-  
+  image-shape: round # rectangle  round  rounded
+    
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/carolyn-mack-3a4788327/
     - icon: instagram
       text: Instagram
-      href: https://instagram.com
+      href: https://www.instagram.com/_carolynmack/
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/
     - icon: file-earmark-pdf
       text: Resumé
-      href: resume-example.pdf
+      href: Resume_Final.docx
       target: _blank
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:cam103@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Junior; BA Mathematics major, with a minor in Data Analtyics and Business Studies. Student-Athlete at SUNY Geneseo.
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Economics
+B.S. in Mathematics | Aug 2022 - May 2026 <br>
+Minor in Business Studies and Data Analytics
 
-## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
 
 

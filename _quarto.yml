@@ -3,17 +3,20 @@ project:
   output-dir: "." 
 
 website:
-  title: "YOUR NAME"
+  title: "Carolyn Mack"
   navbar:
     # background: "#1c4982"
     pinned: true
     left:
       - text: Blog
         href: blog-listing.qmd
+      - text: "Python Dadta Analysis"
+        menu:
+          - text: "pandas"
+            href: pandas_basics.ipynb
+          - text: "seaborn"
+            href: seaborn_basics.ipynb
             
-  page-footer: 
-    center: "Powered with GitHub, Quarto, and Jupyter Notebook<br>© YOUR NAME, 2025"
-
 format:
   html:
     theme: 
