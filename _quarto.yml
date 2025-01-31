@@ -10,11 +10,11 @@ website:
     left:
       - text: Blog
         href: blog-listing.qmd
-      - text: "Python Dadta Analysis"
+      - text: "Python Data Analysis"
         menu:
-          - text: "pandas"
+          - text: Pandas Basics
             href: pandas_basics.ipynb
-          - text: "seaborn"
+          - text: Seaborn Basics
             href: seaborn_basics.ipynb
             
 format:
