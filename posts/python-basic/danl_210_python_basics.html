@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Carolyn Mack">
+<meta name="dcterms.date" content="2025-02-07">
+
+<title>Python Basics – Carolyn Mack</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Carolyn Mack</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog-listing.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-python-data-analysis" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Python Data Analysis</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-python-data-analysis">    
+        <li>
+    <a class="dropdown-item" href="../../pandas_basics.html">
+ <span class="dropdown-text">Pandas Basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../seaborn_basics.html">
+ <span class="dropdown-text">Seaborn Basics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Python Basics</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Carolyn Mack </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 7, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-python" id="toc-introduction-to-python" class="nav-link active" data-scroll-target="#introduction-to-python">Introduction to Python</a>
+  <ul class="collapse">
+  <li><a href="#what-is-python" id="toc-what-is-python" class="nav-link" data-scroll-target="#what-is-python">What is Python?</a></li>
+  <li><a href="#variables-and-data-types" id="toc-variables-and-data-types" class="nav-link" data-scroll-target="#variables-and-data-types">Variables and Data Types</a></li>
+  <li><a href="#control-structures" id="toc-control-structures" class="nav-link" data-scroll-target="#control-structures">Control Structures</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#lists-and-dictionaries" id="toc-lists-and-dictionaries" class="nav-link" data-scroll-target="#lists-and-dictionaries">Lists and Dictionaries</a></li>
+  </ul></li>
+  <li><a href="#ways-to-modify-a-list" id="toc-ways-to-modify-a-list" class="nav-link" data-scroll-target="#ways-to-modify-a-list">Ways to Modify a List:</a>
+  <ul class="collapse">
+  <li><a href="#booleans-conditions" id="toc-booleans-conditions" class="nav-link" data-scroll-target="#booleans-conditions">Booleans Conditions</a></li>
+  <li><a href="#slicing-methods" id="toc-slicing-methods" class="nav-link" data-scroll-target="#slicing-methods">Slicing Methods</a></li>
+  </ul></li>
+  <li><a href="#while-loop" id="toc-while-loop" class="nav-link" data-scroll-target="#while-loop">While Loop</a></li>
+  <li><a href="#for-loop" id="toc-for-loop" class="nav-link" data-scroll-target="#for-loop">For Loop</a></li>
+  <li><a href="#try-and-except" id="toc-try-and-except" class="nav-link" data-scroll-target="#try-and-except">Try and Except:</a></li>
+  <li><a href="#importing-modules-packages-and-libraries" id="toc-importing-modules-packages-and-libraries" class="nav-link" data-scroll-target="#importing-modules-packages-and-libraries">Importing modules, packages and Libraries:</a></li>
+  <li><a href="#part-3.-python-basics" id="toc-part-3.-python-basics" class="nav-link" data-scroll-target="#part-3.-python-basics">Part 3. Python Basics:</a>
+  <ul class="collapse">
+  <li><a href="#q1a" id="toc-q1a" class="nav-link" data-scroll-target="#q1a">Q1a</a></li>
+  </ul></li>
+  <li><a href="#q1b" id="toc-q1b" class="nav-link" data-scroll-target="#q1b">Q1b</a></li>
+  <li><a href="#q4a" id="toc-q4a" class="nav-link" data-scroll-target="#q4a">Q4a</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction-to-python" class="level1">
+<h1>Introduction to Python</h1>
+<section id="what-is-python" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-python">What is Python?</h2>
+<p>Python is a high-level, interpreted programming language. This is a simple Python code:</p>
+<div id="834bc383" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello, World!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="variables-and-data-types" class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-data-types">Variables and Data Types</h2>
+<p>In Python, variables can store data of different types without explicitly declaring the type.</p>
+<p>For example:</p>
+<div id="e6744d1e" class="cell" data-outputid="371456e1-bf0f-448f-ae8d-70c4354ce310">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>integer_variable <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>string_variable <span class="op">=</span> <span class="st">'Hello'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>float_variable <span class="op">=</span> <span class="fl">10.5</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>float_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10.5</code></pre>
+</div>
+</div>
+</section>
+<section id="control-structures" class="level2">
+<h2 class="anchored" data-anchor-id="control-structures">Control Structures</h2>
+<p>Python supports the usual logical conditions from mathematics:</p>
+<p>An Important thing to note is the use of =</p>
+<p>= is an Assignment operator and NOT an equal sign</p>
+<p>= will assign the value on the right side to the varaible on the left side.</p>
+<div id="f74e2029" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equals: a == b</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Not Equals: a != b</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Less than: a &lt; b</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Less than or equal to: a &lt;= b</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Greater than: a &gt; b</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Greater than or equal to: a &gt;= b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Different Data Types:</p>
+<ul>
+<li>integers ex: 10</li>
+<li>floats ex: 8.902</li>
+<li>strings ex: “SUNY Geneseo”</li>
+<li>booleans ex: True, False</li>
+<li>Nothing ex: None</li>
+<li>List ex: [“apple”, “pear”, “orange”, “kiwi”] -lists are more useful bc they are mutable</li>
+<li>Tuple ex: (“apple”, “pear”, “orange”, “kiwi”) -similar to lists but NOT mutable.</li>
+</ul>
+<div id="UfzZhDwEdu4W" class="cell" data-outputid="28ba0534-87bb-4643-f21b-8623e3533bcb" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">==</span> <span class="dv">20</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">==</span><span class="st">'10'</span> <span class="co">#comparing an int to a string</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># == is checking if both sides have the same value --&gt; Boolean Expression, T or F</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>##Operators +additon</p>
+<p>-subtraction</p>
+<p>*multiplication</p>
+<p>**powers</p>
+<p>/division</p>
+<p>//integer division</p>
+<div id="IDINMSuwfAP8" class="cell" data-outputid="ba76985b-8654-4765-9ec5-1bd14d698e47" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CW 4.1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">5</span><span class="op">/</span>(<span class="dv">7</span><span class="op">*</span>(<span class="dv">4</span><span class="op">-</span><span class="dv">2</span><span class="op">**</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>-1.1428571428571428</code></pre>
+</div>
+</div>
+<p>These conditions can be used in several ways, most commonly in ‘if statements’ and loops.</p>
+<p>If statements are used for giving a result if certain condition is ture</p>
+<div id="WqMXB9zXE6rB" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if statement:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">5</span> <span class="op">&gt;</span> <span class="dv">2</span>:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Five is greater than two!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="JMWkXHeyiqgR" class="cell" data-outputid="73f774b1-2273-4ab0-d5a9-aa13d435a4b5" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">98</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> score <span class="op">==</span> <span class="dv">100</span>:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Top marks!"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> score <span class="op">&gt;</span> <span class="dv">90</span> <span class="kw">and</span> score <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"High score!"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> score <span class="op">&gt;</span> <span class="dv">10</span> <span class="kw">and</span> score <span class="op">&lt;=</span> <span class="dv">90</span>:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Better luck next time."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>High score!</code></pre>
+</div>
+</div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p>A function is a block of code which only runs when it is called.</p>
+<p>You can pass data, known as parameters, into a function.</p>
+<p>A function can return data as a result.</p>
+<div id="311db165" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining a function:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello from a function'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling a function:</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>my_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lists-and-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="lists-and-dictionaries">Lists and Dictionaries</h2>
+<p>A list is a collection which is ordered and changeable.</p>
+<p>A dictionary is a collection which is unordered, changeable and indexed.</p>
+<div id="58d29398" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List example:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'banana'</span>, <span class="st">'cherry'</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionary example:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">'name'</span>: <span class="st">'John'</span>, <span class="st">'age'</span>: <span class="dv">36</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>##List Comprehension: A concise way to create or modify lists</p>
+<p>Syntax: [expression for item in iterable if condition]</p>
+<p>ex: squares = [x**2 for x in range(5)]</p>
+<p>##Dictionary Comprehension:</p>
+<p>A consicse way to create or modify dictionaries</p>
+<p>Syntax: {key_expression: value_expression for item in iterable if condition}</p>
+<p>ex: squares_dict = {x: x**2 for x in range(5)}</p>
+</section>
+</section>
+<section id="ways-to-modify-a-list" class="level1">
+<h1>Ways to Modify a List:</h1>
+<ul>
+<li><p>append() : adds item to end of list</p></li>
+<li><p>remove() : Deletes first occurrence of val in list</p></li>
+<li><p>del : deletes and item by index or a sice of items</p></li>
+<li><p>List/Dictionary Comprehension: removes items based on a condition</p></li>
+<li><p>update(): adds new key- value apirs or updates existing ones</p></li>
+</ul>
+<div id="AjCGnknEs6IT" class="cell" data-outputid="4bdff8f2-d4da-45d8-cd84-26b77ccdd690" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>my_dict.update({<span class="st">'c'</span>: <span class="dv">3</span>})</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>my_dict.update({<span class="st">'a'</span>: <span class="dv">10</span>})</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>my_dict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>{'a': 10, 'b': 2, 'c': 3}</code></pre>
+</div>
+</div>
+<section id="booleans-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="booleans-conditions">Booleans Conditions</h2>
+<p>x==y: is x equal to y?</p>
+<p>x!=y: is x not equal to y?</p>
+<p>x&gt;y: is x greater y?</p>
+<pre><code># This is formatted as code</code></pre>
+<p>x&gt;=y: is x greater than or equal to y?</p>
+<div id="iXsw11nNflMk" class="cell" data-outputid="8f631e0e-227e-494a-9b1f-a5a8c8e80797" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CW2:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="op">==</span><span class="st">'20'</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#results in false bc a integer (left side) is not the same type as a string (right side)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>False</code></pre>
+</div>
+</div>
+</section>
+<section id="slicing-methods" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-methods">Slicing Methods</h2>
+<p>Important to remember for lists, Index Starts at 0 not</p>
+<p>Used when you want to extract a substring from the string</p>
+<p>In python it is left inclusive and right exlcusive</p>
+<p>###Format [start : end : stop]</p>
+<p>[:] –&gt; extracts the entire list</p>
+<p>##Bulit in Functions len() command gets the length of the string or how many elements are in a list</p>
+<p>Dot operation:</p>
+<p>-used to access atributes ex:</p>
+<p>( .split, . delete, .add, .join)</p>
+<div id="XajYFy6ugbU3" class="cell" data-outputid="ff2cc9a5-d13f-4fc8-f364-d853d8137d4d" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Slicing Methods practice:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [start: end: step]</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>letters <span class="op">=</span><span class="st">'abcdeghij'</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>letters[<span class="dv">4</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>'eghij'</code></pre>
+</div>
+</div>
+<div id="j2M5L1HFkWbz" class="cell" data-outputid="c39e8719-56ef-44cb-c8ef-c5e5cbc91760" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>letters[:<span class="dv">3</span>] <span class="co">#it does not include the 3rd element! its left inclusive but RIGHT EXCLUSIVE and remember index starts at 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>'abc'</code></pre>
+</div>
+</div>
+<div id="ZWp7oxyymnVn" class="cell" data-outputid="050c2917-410a-457e-9d53-febddfe685dc" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cw 4.3</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fare<span class="op">=</span> <span class="st">"$10.00"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>tip<span class="op">=</span> <span class="st">"2.00$"</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>tax<span class="op">=</span> <span class="st">"$ 0.80"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>fare<span class="op">=</span>fare[<span class="dv">1</span>:] <span class="co">#slicing to exclude the $</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>tip<span class="op">=</span>tip[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>tax<span class="op">=</span>tax[<span class="dv">2</span>:]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>fare <span class="op">=</span> <span class="bu">float</span>(fare)  <span class="co">#type casting</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>tip<span class="op">=</span><span class="bu">float</span>(tip)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>tax<span class="op">=</span><span class="bu">float</span>(tax)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>tot<span class="op">=</span>fare<span class="op">+</span>tip<span class="op">+</span>tax</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"the total price is"</span>, tot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>the total price is 12.8</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="while-loop" class="level1">
+<h1>While Loop</h1>
+<p>** While loop is used to execute a block of codde repeatedly until given boolean conidition evaluated is False</p>
+<ol type="1">
+<li><p>first assign value 1 to count</p></li>
+<li><p>The while loop compared to the count will countinue until the condition becomes untrue</p></li>
+<li><p>increment the counter by +=1 at the end –&gt; and loop will continue to run if condition is true</p></li>
+</ol>
+<ul>
+<li><p>break statements are useful to use when you dont know when to stop at an exact time</p></li>
+<li><p>can use an infinite loop with a break statement</p></li>
+<li><p>if we dont want to break out of the loop but rather just skip ahead to the next iteration –&gt; use a continue statement</p></li>
+</ul>
+<div id="yqrsvtw_osgw" class="cell" data-outputid="9c64ed96-1f3c-4369-8c65-351a1f434be8" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#While Loops</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="co">#this loop keeps iterating until count &lt;=5. After every time the loop runs the count increases by 1</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+2
+3
+4
+5</code></pre>
+</div>
+</div>
+<div id="4DJIkW2UouRm" class="cell" data-outputid="69ed9b44-1b0b-4f6f-ba53-677163caeaa0" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#while loop with a break and continue statement:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Integer, please [q to quit]: "</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">==</span> <span class="st">'q'</span>: <span class="co"># quit</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(value)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>: <span class="co"># an even number</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span> <span class="co">#continues to top without executing the print value.</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(number, <span class="st">"squared is"</span>, number<span class="op">*</span>number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Integer, please [q to quit]: 10
+Integer, please [q to quit]: 8
+Integer, please [q to quit]: 5
+5 squared is 25
+Integer, please [q to quit]: q</code></pre>
+</div>
+</div>
+</section>
+<section id="for-loop" class="level1">
+<h1>For Loop</h1>
+<p>Useful when we want to loop through a set of things like a strong of test or a list of numbers</p>
+<ol type="1">
+<li><p>need to assign the string or list for which we will use the in function to run through the word</p></li>
+<li><p>loop will continue to execute for the whole list or string as long or for the range we set it to run through</p></li>
+</ol>
+<p>** For loop makes it possible to traverse data structures w/o knowing how large they are</p>
+<ul>
+<li>just like the while loop you can use continue or break statements.</li>
+</ul>
+<section id="range-function" class="level4">
+<h4 class="anchored" data-anchor-id="range-function">Range Function:</h4>
+<p>range function is commonly used with for loops: - range() returns a stream of numbers within a specified range w/o having to create and store a large data structure</p>
+<p>range (start, stop, step)</p>
+<p>** remember the end of the range function is exclusive</p>
+<div id="DWXFl4x0pbbI" class="cell" data-outputid="77c1e105-93d6-452e-b53c-ba143749f88f" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>word<span class="op">=</span> <span class="st">"carolyn"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> word:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>c
+a
+r
+o
+l
+y
+n</code></pre>
+</div>
+</div>
+<div id="gaDx_nF_r8bz" class="cell" data-outputid="7d646916-aca5-4602-f820-e7f45be1fd7f" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">3</span>): <span class="co">#Remember 3 is exclusive so list will only be [0,1,2]</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+2</code></pre>
+</div>
+</div>
+<div id="SxsOqRJ5sL5F" class="cell" data-outputid="0f5eb20b-543b-45e9-e99b-6ce4b11226ea" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CW 4.5:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a for loop to print each value of the list [3, 2, 1, 0], one at a time.</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>vals<span class="op">=</span>[<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> vals:</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+2
+1
+0</code></pre>
+</div>
+</div>
+<div id="H7PWdL_PsfOA" class="cell" data-outputid="d829c188-3469-4cae-9c31-23ea4e043176" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CW 6:</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>guess_me<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>number<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> number<span class="op">&lt;</span>guess_me:</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"too low"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> number <span class="op">==</span>guess_me:</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"found it!"</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"oops"</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  number <span class="op">+=</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>too low
+too low
+too low
+found it!</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="try-and-except" class="level1">
+<h1>Try and Except:</h1>
+<p>Python uses exceptions: code that is executed when an associated error occurs. When we run code that might fail under some circumstances, we also need appropriate exception handlers to intercept any potential errors.</p>
+<p>Accessing a list or tuple with an out-of-range position, or a dictionary with a nonexistent key</p>
+<p>-It tries to run lines that it will accept if there are errors in your code.</p>
+<div id="UXOyrdJsuyDk" class="cell" data-outputid="6898b58b-88dd-4a40-eb79-8cfb08a40642" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>position <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>short_list[position] <span class="co">#this will cause an error</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>position <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    short_list[position]</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Need a position between 0 and'</span>, <span class="bu">len</span>(short_list)<span class="op">-</span><span class="dv">1</span>, <span class="st">' but got'</span>,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-19-e1a63c918921&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg ansi-bold">      1</span> short_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg ansi-bold">      2</span> position <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">5</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>short_list<span class="ansi-blue-fg">[</span>position<span class="ansi-blue-fg">]</span> <span class="ansi-red-fg">#this will cause an error</span>
+<span class="ansi-green-fg ansi-bold">      4</span> 
+<span class="ansi-green-fg ansi-bold">      5</span> short_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+</div>
+<div id="pVIoBOudu7Ld" class="cell" data-outputid="1b8fa395-db8d-48d0-848d-c076e3f565a1" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use this try block: it allows part of the code to run even if there is an error.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#If there is an error and exception is rasied and the code inside the except block runs</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#--&gt; if there aren't any errors then the except block is skipped.</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>position <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    short_list[position]</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Need a position between 0 and'</span>, <span class="bu">len</span>(short_list)<span class="op">-</span><span class="dv">1</span>, <span class="st">' but got'</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Need a position between 0 and 2  but got 5</code></pre>
+</div>
+</div>
+<div id="WM2xJumXvauK" class="cell" data-outputid="02a04ed3-ebd1-428b-f974-8f8727482e3d" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Position [q to quit]? '</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">==</span> <span class="st">'q'</span>:</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        position <span class="op">=</span> <span class="bu">int</span>(value)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(short_list[position])</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">IndexError</span> <span class="im">as</span> err: <span class="co">#means that err will be printed</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Bad index:'</span>, position, <span class="st">'-'</span>, err)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> other: <span class="co">#would see if entered $5, etc.. Any other error besides an index error</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Something else broke:'</span>, other)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Position [q to quit]? 4
+Bad index: 4 - list index out of range
+Position [q to quit]? 2
+3
+Position [q to quit]? -7
+Bad index: -7 - list index out of range
+Position [q to quit]? q</code></pre>
+</div>
+</div>
+<div id="L1KU25ozv8ru" class="cell" data-outputid="c981d56c-5381-4527-8caa-d08b05d6c297" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">##Cw7</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>value<span class="op">=</span><span class="st">"$320"</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  value_n <span class="op">=</span><span class="bu">float</span>(value)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"you Entered"</span>, value)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"that's not a valid number!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>that's not a valid number!</code></pre>
+</div>
+</div>
+</section>
+<section id="importing-modules-packages-and-libraries" class="level1">
+<h1>Importing modules, packages and Libraries:</h1>
+<p>Main libraries are:</p>
+<ul>
+<li>Pandas –&gt;</li>
+<li>numpy –&gt; np.arry()</li>
+<li>matplotlib –&gt; matplotlib.pyplot</li>
+<li>seaborn</li>
+</ul>
+<p>Module: bunch of realted codes svaed in a file with .py extension</p>
+<p>Package: dir4ectory of a collection of modules</p>
+<p>Library: collection of packages</p>
+<div id="-Ucgwsjawz-3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ways to import modules, packages and libraries</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using as keyword</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using from keyword</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># from LIBRARY import FUNCTION, PACKAGE, MODULE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="KC7ijUUrxGl-" class="cell" data-outputid="ac884d0e-da5a-4d5d-b3a0-868cb1c332fe" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to install a library LIBRARY on google Colab or Anaconda Python do:</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install LIBRARY</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting LIBRARY
+  Downloading library-3.0.53-py3-none-any.whl.metadata (153 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0.0/153.0 kB ? eta -:--:--     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━ 143.4/153.0 kB 4.3 MB/s eta 0:00:01     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.0/153.0 kB 3.3 MB/s eta 0:00:00
+Requirement already satisfied: beautifulsoup4&gt;=4.10.0 in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (4.13.3)
+Collecting ffmpeg-python (from LIBRARY)
+  Downloading ffmpeg_python-0.2.0-py3-none-any.whl.metadata (1.7 kB)
+Collecting ftfy (from LIBRARY)
+  Downloading ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting gallery-dl (from LIBRARY)
+  Downloading gallery_dl-1.28.5-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: humanize in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (4.11.0)
+Requirement already satisfied: ipython in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (7.34.0)
+Requirement already satisfied: lxml in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (5.3.0)
+Requirement already satisfied: markdown in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (3.7)
+Collecting mutagen (from LIBRARY)
+  Downloading mutagen-1.47.0-py3-none-any.whl.metadata (1.7 kB)
+Requirement already satisfied: natsort in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (8.4.0)
+Collecting praw (from LIBRARY)
+  Downloading praw-7.8.1-py3-none-any.whl.metadata (9.4 kB)
+Collecting puremagic (from LIBRARY)
+  Downloading puremagic-1.28-py3-none-any.whl.metadata (5.8 kB)
+Collecting pysubs2 (from LIBRARY)
+  Downloading pysubs2-1.8.0-py3-none-any.whl.metadata (3.2 kB)
+Requirement already satisfied: python-dateutil in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (2.8.2)
+Collecting python-mpv-jsonipc (from LIBRARY)
+  Downloading python_mpv_jsonipc-1.2.0-py3-none-any.whl.metadata (2.3 kB)
+Requirement already satisfied: regex in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (2024.11.6)
+Requirement already satisfied: rich in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (13.9.4)
+Collecting screeninfo (from LIBRARY)
+  Downloading screeninfo-0.8.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting sqlite-utils (from LIBRARY)
+  Downloading sqlite_utils-3.38-py3-none-any.whl.metadata (7.5 kB)
+Requirement already satisfied: tabulate in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (0.9.0)
+Collecting tinytag (from LIBRARY)
+  Downloading tinytag-2.0.0-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.11/dist-packages (from LIBRARY) (0.2.13)
+Collecting yt-dlp[default] (from LIBRARY)
+  Downloading yt_dlp-2025.1.26-py3-none-any.whl.metadata (172 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 172.0/172.0 kB 9.3 MB/s eta 0:00:00
+Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.11/dist-packages (from beautifulsoup4&gt;=4.10.0-&gt;LIBRARY) (2.6)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /usr/local/lib/python3.11/dist-packages (from beautifulsoup4&gt;=4.10.0-&gt;LIBRARY) (4.12.2)
+Requirement already satisfied: future in /usr/local/lib/python3.11/dist-packages (from ffmpeg-python-&gt;LIBRARY) (1.0.0)
+Requirement already satisfied: requests&gt;=2.11.0 in /usr/local/lib/python3.11/dist-packages (from gallery-dl-&gt;LIBRARY) (2.32.3)
+Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (75.1.0)
+Collecting jedi&gt;=0.16 (from ipython-&gt;LIBRARY)
+  Downloading jedi-0.19.2-py2.py3-none-any.whl.metadata (22 kB)
+Requirement already satisfied: decorator in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (4.4.2)
+Requirement already satisfied: pickleshare in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (0.7.5)
+Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (5.7.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (3.0.50)
+Requirement already satisfied: pygments in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (2.18.0)
+Requirement already satisfied: backcall in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (0.2.0)
+Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (0.1.7)
+Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.11/dist-packages (from ipython-&gt;LIBRARY) (4.9.0)
+Collecting prawcore&lt;3,&gt;=2.4 (from praw-&gt;LIBRARY)
+  Downloading prawcore-2.4.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting update_checker&gt;=0.18 (from praw-&gt;LIBRARY)
+  Downloading update_checker-0.18.0-py3-none-any.whl.metadata (2.3 kB)
+Requirement already satisfied: websocket-client&gt;=0.54.0 in /usr/local/lib/python3.11/dist-packages (from praw-&gt;LIBRARY) (1.8.0)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil-&gt;LIBRARY) (1.17.0)
+Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.11/dist-packages (from rich-&gt;LIBRARY) (3.0.0)
+Collecting sqlite-fts4 (from sqlite-utils-&gt;LIBRARY)
+  Downloading sqlite_fts4-1.0.3-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: click in /usr/local/lib/python3.11/dist-packages (from sqlite-utils-&gt;LIBRARY) (8.1.8)
+Collecting click-default-group&gt;=1.2.3 (from sqlite-utils-&gt;LIBRARY)
+  Downloading click_default_group-1.2.4-py2.py3-none-any.whl.metadata (2.8 kB)
+Requirement already satisfied: pluggy in /usr/local/lib/python3.11/dist-packages (from sqlite-utils-&gt;LIBRARY) (1.5.0)
+Collecting brotli (from yt-dlp[default]-&gt;LIBRARY)
+  Downloading Brotli-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
+Requirement already satisfied: certifi in /usr/local/lib/python3.11/dist-packages (from yt-dlp[default]-&gt;LIBRARY) (2025.1.31)
+Collecting pycryptodomex (from yt-dlp[default]-&gt;LIBRARY)
+  Downloading pycryptodomex-3.21.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.4 kB)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.26.17 in /usr/local/lib/python3.11/dist-packages (from yt-dlp[default]-&gt;LIBRARY) (2.3.0)
+Requirement already satisfied: websockets&gt;=13.0 in /usr/local/lib/python3.11/dist-packages (from yt-dlp[default]-&gt;LIBRARY) (14.2)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in /usr/local/lib/python3.11/dist-packages (from jedi&gt;=0.16-&gt;ipython-&gt;LIBRARY) (0.8.4)
+Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.11/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;LIBRARY) (0.1.2)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.11/dist-packages (from pexpect&gt;4.3-&gt;ipython-&gt;LIBRARY) (0.7.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.11/dist-packages (from requests&gt;=2.11.0-&gt;gallery-dl-&gt;LIBRARY) (3.4.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.11/dist-packages (from requests&gt;=2.11.0-&gt;gallery-dl-&gt;LIBRARY) (3.10)
+Downloading library-3.0.53-py3-none-any.whl (1.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 28.9 MB/s eta 0:00:00
+Downloading ffmpeg_python-0.2.0-py3-none-any.whl (25 kB)
+Downloading ftfy-6.3.1-py3-none-any.whl (44 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.8/44.8 kB 3.5 MB/s eta 0:00:00
+Downloading gallery_dl-1.28.5-py3-none-any.whl (655 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 655.3/655.3 kB 32.0 MB/s eta 0:00:00
+Downloading mutagen-1.47.0-py3-none-any.whl (194 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 194.4/194.4 kB 15.5 MB/s eta 0:00:00
+Downloading praw-7.8.1-py3-none-any.whl (189 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 189.3/189.3 kB 16.4 MB/s eta 0:00:00
+Downloading puremagic-1.28-py3-none-any.whl (43 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.2/43.2 kB 3.4 MB/s eta 0:00:00
+Downloading pysubs2-1.8.0-py3-none-any.whl (43 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 3.6 MB/s eta 0:00:00
+Downloading python_mpv_jsonipc-1.2.0-py3-none-any.whl (12 kB)
+Downloading screeninfo-0.8.1-py3-none-any.whl (12 kB)
+Downloading sqlite_utils-3.38-py3-none-any.whl (68 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.2/68.2 kB 5.2 MB/s eta 0:00:00
+Downloading tinytag-2.0.0-py3-none-any.whl (30 kB)
+Downloading click_default_group-1.2.4-py2.py3-none-any.whl (4.1 kB)
+Downloading jedi-0.19.2-py2.py3-none-any.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 51.0 MB/s eta 0:00:00
+Downloading prawcore-2.4.0-py3-none-any.whl (17 kB)
+Downloading update_checker-0.18.0-py3-none-any.whl (7.0 kB)
+Downloading Brotli-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 69.3 MB/s eta 0:00:00
+Downloading pycryptodomex-3.21.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 63.5 MB/s eta 0:00:00
+Downloading sqlite_fts4-1.0.3-py3-none-any.whl (10.0 kB)
+Downloading yt_dlp-2025.1.26-py3-none-any.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 79.8 MB/s eta 0:00:00
+Installing collected packages: sqlite-fts4, puremagic, brotli, yt-dlp, tinytag, screeninfo, python-mpv-jsonipc, pysubs2, pycryptodomex, mutagen, jedi, ftfy, ffmpeg-python, click-default-group, update_checker, sqlite-utils, prawcore, gallery-dl, praw, LIBRARY
+Successfully installed LIBRARY-3.0.53 brotli-1.1.0 click-default-group-1.2.4 ffmpeg-python-0.2.0 ftfy-6.3.1 gallery-dl-1.28.5 jedi-0.19.2 mutagen-1.47.0 praw-7.8.1 prawcore-2.4.0 puremagic-1.28 pycryptodomex-3.21.0 pysubs2-1.8.0 python-mpv-jsonipc-1.2.0 screeninfo-0.8.1 sqlite-fts4-1.0.3 sqlite-utils-3.38 tinytag-2.0.0 update_checker-0.18.0 yt-dlp-2025.1.26</code></pre>
+</div>
+</div>
+</section>
+<section id="part-3.-python-basics" class="level1">
+<h1>Part 3. Python Basics:</h1>
+<p>Q0: my Git Hub Username:</p>
+<p>Carolynmack</p>
+<section id="q1a" class="level2">
+<h2 class="anchored" data-anchor-id="q1a">Q1a</h2>
+<ul>
+<li><p>Create a list of integers from 1 to 10.</p></li>
+<li><p>Append the number 11 to the list and remove the number 5.</p></li>
+</ul>
+<div id="_MgAlo9kluyg" class="cell" data-outputid="1269e003-46e1-404b-aea8-43a253823f09" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span><span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>]</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>.append(<span class="dv">11</span>) <span class="co">#append adds a value to the end of the</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>.remove(<span class="dv">5</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>[1, 2, 3, 4, 6, 7, 8, 9, 10, 11]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="q1b" class="level1">
+<h1>Q1b</h1>
+<p>Consider the following dictionary of three employees and their salaries: dict_salaries = {‘Alice’: 50000, ‘Bob’: 60000, ‘Charlie’: 70000}</p>
+<p>Add a new employee ‘Dana’ with a salary of 65000. Update ‘Alice’’s salary to 55000. Print all employee names and their salaries.</p>
+<div id="_OtYbQMKm2qm" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dict_salaries <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="dv">50000</span>, <span class="st">'Bob'</span>: <span class="dv">60000</span>, <span class="st">'Charlie'</span>: <span class="dv">70000</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bfpxNpjWnFQm" class="cell" data-outputid="c936725e-5466-4e20-a32d-4e0017bfa0e5" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dict_salaries.update({<span class="st">'Dana'</span>: <span class="dv">65000</span>,<span class="st">'Alice'</span> : <span class="dv">55000</span> })</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dict_salaries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Alice': 55000, 'Bob': 60000, 'Charlie': 70000, 'Dana': 65000}</code></pre>
+</div>
+</div>
+<p>#Q2a Assign a variable salary to 75000. Use an if-elif-else statement to print: - ‘Low’ if salary is less than 50,000 - ‘Medium’ if salary is between 50,000 and 99,999 - ‘High’ if salary is 100,000 or more</p>
+<div id="SAfDMcRPn5-L" class="cell" data-outputid="d5b167b1-5334-41ab-def5-51518ceb8ee0" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>salary<span class="op">=</span><span class="dv">75000</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> salary <span class="op">&lt;</span> <span class="dv">50000</span>:</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Low"</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> salary <span class="op">&gt;=</span> <span class="dv">50000</span> <span class="kw">and</span> salary <span class="op">&lt;=</span> <span class="dv">99999</span>:</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Medium"</span>)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> salary <span class="op">&gt;=</span> <span class="dv">100000</span>:</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"High"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Medium</code></pre>
+</div>
+</div>
+<p>#2b Assign two variables, role and salary, to ‘Manager’ and 85000, respectively.</p>
+<p>Use nested if-else statements to print:</p>
+<ul>
+<li>‘Eligible for bonus’ if the role is ‘Manager’ and the salary is greater than 80,000.</li>
+<li>‘Eligible for raise’ if the role is ‘Analyst’ and the salary is less than 60,000.</li>
+<li>‘No action needed’ for all other cases.</li>
+</ul>
+<div id="jnXNt2FDpDfY" class="cell" data-outputid="65d5f275-a3e5-47b8-c250-217216221a0b" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>role<span class="op">=</span><span class="st">'Manager'</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>salary<span class="op">=</span><span class="dv">85000</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> role <span class="op">==</span> <span class="st">'Manager'</span>:</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> salary <span class="op">&gt;</span> <span class="dv">80000</span>:</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Eligible for bounus'</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:                               <span class="co">#use else here and not elif</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'No action needed'</span>)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> role <span class="op">==</span> <span class="st">'Analyst'</span>:</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> salary <span class="op">&lt;</span> <span class="dv">60000</span>:</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Eligible for raise'</span>)</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'No action needed'</span>)</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">'No action needed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Eligible for bounus</code></pre>
+</div>
+</div>
+<p>#3a Consider the following list of salaries: list_salaries = [45000, 60000, 75000, 120000, 30000]</p>
+<ul>
+<li>Calculate the average salary.</li>
+<li>Use a for loop to print whether each salary is ‘Above Average’ or ‘Below Average’.</li>
+</ul>
+<div id="JNMOXoY80jO-" class="cell" data-outputid="c552aea2-8175-4e55-e78e-c627d6c11485" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>list_salaries <span class="op">=</span> [<span class="dv">45000</span>, <span class="dv">60000</span>, <span class="dv">75000</span>, <span class="dv">120000</span>, <span class="dv">30000</span>]</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>avg_salary <span class="op">=</span> (<span class="bu">sum</span>(list_salaries)<span class="op">/</span><span class="bu">len</span>(list_salaries))</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>avg_salary</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> list_salaries:</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> i <span class="op">&gt;</span> avg_salary:</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, <span class="st">'is Above Average'</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, <span class="st">'is Below Average'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>66000.0
+45000 is Below Average
+60000 is Below Average
+75000 is Above Average
+120000 is Above Average
+30000 is Below Average</code></pre>
+</div>
+</div>
+<p>#3b - Start with a salary of 50000. - Use a while loop to increase the salary by 5000 each year until it exceeds 80000. - Print the salary after each increment.</p>
+<div id="MBBHT4EG3ECH" class="cell" data-outputid="d2ce9029-bc20-4bcc-8c02-9e4aa8f86190" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>salary <span class="op">=</span> <span class="dv">50000</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> salary <span class="op">&lt;=</span> <span class="dv">80000</span>:</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  salary <span class="op">+=</span> <span class="dv">5000</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(salary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>55000
+60000
+65000
+70000
+75000
+80000
+85000</code></pre>
+</div>
+</div>
+<p>#3C - Consider the following dictionary of employee salaries: salaries = {‘Alice’: 50000, ‘Bob’: 60000, ‘Charlie’: 70000, ‘Dana’: 45000}</p>
+<ul>
+<li>Use a for loop to print the names of employees who earn more than 55000.</li>
+</ul>
+<div id="WiYJ_dLq55rY" class="cell" data-outputid="d02aa46f-fafd-4ed7-e342-2268a83cbbf3" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="dv">50000</span>, <span class="st">'Bob'</span>: <span class="dv">60000</span>, <span class="st">'Charlie'</span>: <span class="dv">70000</span>, <span class="st">'Dana'</span>: <span class="dv">45000</span>}</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>salaries.keys() <span class="co">#extracting the names</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>salaries.values() <span class="co">#extracting the salaires</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>salaries.items()</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> salaries.items():</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> value<span class="op">&gt;</span><span class="dv">55000</span>:</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bob
+Charlie</code></pre>
+</div>
+</div>
+<div id="mvVNjq873M-V" class="cell" data-outputid="68e8f9ce-50fd-45d5-d100-d451651ac818" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>salaries.items()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>dict_items([('Alice', 50000), ('Bob', 60000), ('Charlie', 70000), ('Dana', 45000)])</code></pre>
+</div>
+</div>
+<p>#Q3d</p>
+<p>data_list = [42, 3.14, ‘Data Analytics’, True, None, [1, 2, 3], {‘key’: ‘value’}, (4, 5)]</p>
+<p>Given the list above, print the data type of each element using the type() function in a for loop. In the loop: - Convert the integer 42 to a string. - Convert the float 3.14 to a string, then back to a float. - Convert the boolean True to an integer.</p>
+<div id="8un-QT5o9G5K" class="cell" data-outputid="372f3b43-55fb-4f98-d036-de4bd66817b3" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="op">=</span> [<span class="dv">42</span>, <span class="fl">3.14</span>, <span class="st">'Data Analytics'</span>, <span class="va">True</span>, <span class="va">None</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], {<span class="st">'key'</span>: <span class="st">'value'</span>}, (<span class="dv">4</span>, <span class="dv">5</span>)]</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> data_list:</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> i<span class="op">==</span><span class="dv">42</span>: <span class="co">#have to commpare to direct element and not to the index #</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="bu">str</span>(i) <span class="co">#converting the 42 to an str</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> i<span class="op">==</span><span class="fl">3.14</span>:</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="bu">float</span>(<span class="bu">str</span>(i)) <span class="co">#converting 3.14 to a string, then back to a float</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> i <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span><span class="bu">int</span>(i) <span class="co">#convrting the True to an int</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"value:"</span>, i, <span class="st">"Type:"</span>, <span class="bu">type</span>(i))</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>value: 42 Type: &lt;class 'str'&gt;
+value: 3.14 Type: &lt;class 'float'&gt;
+value: Data Analytics Type: &lt;class 'str'&gt;
+value: 1 Type: &lt;class 'int'&gt;
+value: None Type: &lt;class 'NoneType'&gt;
+value: [1, 2, 3] Type: &lt;class 'list'&gt;
+value: {'key': 'value'} Type: &lt;class 'dict'&gt;
+value: (4, 5) Type: &lt;class 'tuple'&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="q4a" class="level1">
+<h1>Q4a</h1>
+<p>Consider the variables a and b:</p>
+<p>a = 10 b = 0</p>
+<ul>
+<li><p>Use a try-except block to print the result of a / b.</p></li>
+<li><p>If there is an error, print ‘Cannot divide by zero!’.</p></li>
+</ul>
+<div id="ZncCz0Qhr0Yp" class="cell" data-outputid="8e0ca49b-b581-4e4f-abfe-4768d9d0d1ef" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  val<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(val)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">'Cannot divide by zero!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cannot divide by zero!</code></pre>
+</div>
+</div>
+<p>#4b Consider the following dictionary of salaries with some missing (None) values: salaries = {‘Alice’: 50000, ‘Bob’: None, ‘Charlie’: 70000, ‘Dana’: None, ‘Eve’: 80000}</p>
+<ul>
+<li>Use a for loop with a try-except block to calculate the total of non-missing salaries.</li>
+</ul>
+<div id="Jk4yf5ujtIVt" class="cell" data-outputid="73ffd929-0b7d-4921-8cc6-85272e508572" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="dv">50000</span>, <span class="st">'Bob'</span>: <span class="va">None</span>, <span class="st">'Charlie'</span>: <span class="dv">70000</span>, <span class="st">'Dana'</span>: <span class="va">None</span>, <span class="st">'Eve'</span>: <span class="dv">80000</span>}</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>salaries.values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>dict_values([50000, None, 70000, None, 80000])</code></pre>
+</div>
+</div>
+<div id="1DWRJQLCto3x" class="cell" data-outputid="28c06510-e16b-4895-cbad-0bd204486d0f" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>salaries <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="dv">50000</span>, <span class="st">'Bob'</span>: <span class="va">None</span>, <span class="st">'Charlie'</span>: <span class="dv">70000</span>, <span class="st">'Dana'</span>: <span class="va">None</span>, <span class="st">'Eve'</span>: <span class="dv">80000</span>}</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>salaries.values()</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>tot_salaries<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> salaries.values():</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span>:</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>    tot_salaries <span class="op">+=</span> i</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">except</span> <span class="pp">TypeError</span> <span class="im">as</span> err:</span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>tot_salaries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>200000</code></pre>
+</div>
+</div>
+<p>#Q5</p>
+<p>Import the math library and calculate the square root of 81 using the sqrt() function provided by the math library.</p>
+<div id="wwRIib5GzeQn" class="cell" data-outputid="0514bc7d-2f9f-4522-d556-2b579f815500" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>ans<span class="op">=</span> math.sqrt(<span class="dv">81</span>)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>9.0</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="text/javascript" src="links.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
