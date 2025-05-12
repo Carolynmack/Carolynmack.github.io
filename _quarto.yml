@@ -10,9 +10,15 @@ website:
     left:
       - text: Blog
         href: blog-listing.qmd
-      - text: "Holiday Movie"
-        href: Holiday_movies_blog.ipynb
-      
+      - text: "Project"
+        href: danl_proj_nba.ipynb
+      - text: "Python Data Analysis"
+        menu:
+          - text: Pandas Basics
+            href: pandas_basics.ipynb
+          - text: Seaborn Basics
+            href: seaborn_basics.ipynb
+            
 format:
   html:
     theme: 
